@@ -22,6 +22,9 @@
                 @Html.DisplayNameFor(model => model.CoverUrl)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.DownloadUrl)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Year)
             </th>
             <th>
@@ -49,10 +52,13 @@
                 @Html.DisplayFor(modelItem => item.Authors)
             </td>
             <td>
-                <a href="@Html.DisplayFor(modelItem => item.DownloadUrl)">@Html.DisplayFor(modelItem => item.Title)</a>
+                @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 <img src="@Url.Content(item.CoverUrl)" alt="image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DownloadUrl)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Year)

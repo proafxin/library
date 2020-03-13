@@ -30,6 +30,7 @@ namespace Library.Models
         public String CoverUrl { get; set; }
 
         [BsonElement("Thumbnail")]
+        [Display(Name ="Thumbnail")]
         [DataType(DataType.ImageUrl)]
         public String ThumbNail { get; set; }
 
@@ -54,11 +55,11 @@ namespace Library.Models
         public String ISBN13 { get; set; }
 
         [BsonElement("Edition")]
-        public int Edition { get; set; }
+        public int? Edition { get; set; }
 
         [BsonElement("DownloadLink")]
         [Display(Name ="Download link")]
-        [DataType(DataType.ImageUrl)]
+        [DataType(DataType.Url)]
         public String DownloadUrl { get; set; }
     }
 }

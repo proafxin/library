@@ -24,9 +24,18 @@ namespace Library.Controllers
         }
 
         // GET: Books/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(String id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var book = bookService.Get(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return View(book);
         }
 
         // GET: Books/Create
@@ -49,20 +58,37 @@ namespace Library.Controllers
         }
 
         // GET: Books/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(String id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var book = bookService.Get(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return View(book);
         }
 
         // POST: Books/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(String id, Book bookNew)
         {
             try
             {
-                // TODO: Add update logic here
-
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                var book = bookService.Get(id);
+                if (book == null)
+                {
+                    return NotFound();
+                }
+                bookService.Update(id, bookNew);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -72,20 +98,37 @@ namespace Library.Controllers
         }
 
         // GET: Books/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(String id)
         {
-            return View();
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var book = bookService.Get(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return View(book);
         }
 
         // POST: Books/Delete/5
-        [HttpPost]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult DeleteConfirmed(String id)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                var book = bookService.Get(id);
+                if (book == null)
+                {
+                    return NotFound();
+                }
+                bookService.Remove(id);
                 return RedirectToAction(nameof(Index));
             }
             catch
